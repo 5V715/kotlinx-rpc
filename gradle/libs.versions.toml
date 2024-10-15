@@ -1,0 +1,66 @@
+[versions]
+kotlin = "1.9.24"
+coroutines = "1.9.0"
+serialization = "1.7.2"
+ktor = "3.0.0"
+logback = "1.4.14"
+krpc = "0.3.0"
+google-ksp = "1.9.24-1.0.20"
+shadowjar = "8.1.1"
+clikt = "4.4.0"
+kotlin-logging = "7.0.0"
+slf4j = "2.0.13"
+
+[libraries]
+kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlin-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "serialization" }
+kotlin-rpc-core = { module = "org.jetbrains.kotlinx:kotlinx-rpc-core", version.ref = "krpc" }
+
+clikt = { module = "com.github.ajalt.clikt:clikt", version.ref = "clikt" }
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
+krpc-ktor-client = { module = "org.jetbrains.kotlinx:kotlinx-rpc-krpc-ktor-client", version.ref = "krpc" }
+krpc-client = { module = "org.jetbrains.kotlinx:kotlinx-rpc-krpc-client", version.ref = "krpc" }
+kotlin-logging = { module = "io.github.oshai:kotlin-logging-jvm", version.ref = "kotlin-logging" }
+slf4j = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j" }
+krpc-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-rpc-krpc-serialization-json", version.ref = "krpc" }
+
+ktor-server-jvm = {module = "io.ktor:ktor-server-core-jvm", version.ref="ktor"}
+ktor-server-netty = {module="io.ktor:ktor-server-netty-jvm", version.ref="ktor" }
+logback-classic = {module="ch.qos.logback:logback-classic", version.ref="logback"}
+krpc-server = {module="org.jetbrains.kotlinx:kotlinx-rpc-krpc-server", version.ref="krpc"}
+krpc-ktor-server = {module="org.jetbrains.kotlinx:kotlinx-rpc-krpc-ktor-server", version.ref="krpc"}
+
+[bundles]
+core = [
+    "kotlin-coroutines-core",
+    "kotlin-serialization-core",
+    "kotlin-rpc-core"
+]
+client = [
+    "clikt",
+    "ktor-client-core",
+    "ktor-client-cio",
+    "krpc-ktor-client",
+    "krpc-client",
+    "kotlin-logging",
+    "slf4j",
+    "krpc-serialization-json"
+]
+
+server = [
+    "ktor-server-jvm",
+    "ktor-server-netty",
+    "logback-classic",
+    "krpc-server",
+    "krpc-ktor-server",
+    "krpc-serialization-json"
+]
+
+[plugins]
+ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
+google-ksp = { id = "com.google.devtools.ksp", version.ref = "google-ksp" }
+kotlin-rpc = { id = "org.jetbrains.kotlinx.rpc.plugin", version.ref = "krpc" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+shadow-jar = { id = "com.github.johnrengelman.shadow", version.ref = "shadowjar" }

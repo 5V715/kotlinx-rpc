@@ -4,18 +4,18 @@ import com.github.ajalt.clikt.parameters.options.help
 import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.types.int
 import dev.silas.NewsApi
+import io.github.oshai.kotlinlogging.KotlinLogging
 import io.ktor.client.HttpClient
 import io.ktor.client.request.url
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.runBlocking
-import kotlinx.rpc.client.withService
 import kotlinx.rpc.serialization.json
 import kotlinx.rpc.streamScoped
 import kotlinx.rpc.transport.ktor.client.installRPC
 import kotlinx.rpc.transport.ktor.client.rpc
 import kotlinx.rpc.transport.ktor.client.rpcConfig
-import mu.KotlinLogging
+import kotlinx.rpc.withService
 
 class CliKlient : CliktCommand() {
 
@@ -39,8 +39,8 @@ class CliKlient : CliktCommand() {
 
             val topicStream = runCatching {
                 client.withService<NewsApi>().getNews(topic)
-            }.getOrElse { _ ->
-                logger.error { "the topic was not found" }
+            }.getOrElse { error ->
+                logger.error(error) { "the topic was not found" }
                 emptyFlow()
             }
 
